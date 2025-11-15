@@ -21,29 +21,39 @@ export default function ProductForm({ selected, clearEdit }) {
         setForm({ name: "", price: "", description: "" });
     };
 
+    const fieldStyle = { marginBottom: "1rem" }; // padding between fields
+
     return (
         <form onSubmit={submitHandler}>
-            <input
-                placeholder="Name"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                required
-            />
-            <input
-                type="number"
-                placeholder="Price"
-                value={form.price}
-                onChange={(e) => setForm({ ...form, price: e.target.value })}
-                required
-            />
-            <textarea
-                placeholder="Description"
-                value={form.description}
-                onChange={(e) => setForm({ ...form, description: e.target.value })}
-                required
-            />
-            <button type="submit">{selected ? "Update" : "Add"}</button>
-            {selected && <button onClick={clearEdit}>Cancel</button>}
+            <div style={fieldStyle}>
+                <input
+                    placeholder="Name"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    required
+                />
+            </div>
+            <div style={fieldStyle}>
+                <input
+                    type="number"
+                    placeholder="Price"
+                    value={form.price}
+                    onChange={(e) => setForm({ ...form, price: e.target.value })}
+                    required
+                />
+            </div>
+            <div style={fieldStyle}>
+                <textarea
+                    placeholder="Description"
+                    value={form.description}
+                    onChange={(e) => setForm({ ...form, description: e.target.value })}
+                    required
+                />
+            </div>
+            <div style={fieldStyle}>
+                <button type="submit">{selected ? "Update" : "Add"}</button>
+                {selected && <button type="button" onClick={clearEdit} style={{ marginLeft: "0.5rem" }}>Cancel</button>}
+            </div>
         </form>
     );
 }
